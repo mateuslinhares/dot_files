@@ -1,0 +1,61 @@
+###############
+# Ikwa
+###############
+
+#Servidores Externos
+
+#1)Produção
+Host gondor
+Hostname 187.61.0.210
+User ikwa
+ForwardAgent yes
+
+#2)Servidor Auxiliar
+Host rohan
+Hostname 187.61.0.211
+User ikwa
+ForwardAgent yes
+
+#Servidores Internos
+
+#1) Antigo Halls
+Host mordor
+Hostname 192.168.0.139
+User ikwa
+ForwardAgent yes
+
+#2) monitoramento e controle de banda (Shaper, Nagios e cacti)
+Host minasmoria
+Hostname 192.168.0.172
+User ikwa
+ForwardAgent yes
+
+#3) servidor dedicado pro midiawiki
+Host valinor
+Hostname 192.168.0.172
+User ikwa
+ForwardAgent yes
+
+#4) servidor de autenticação (LDAP)
+Host isengard
+Hostname 192.168.0.172
+User ikwa
+ForwardAgent yes
+
+#5) dns DHCP
+Host rivendell
+Hostname 192.168.0.122
+User ikwa
+ForwardAgent yes
+
+#6) apache dedicado para aplicações internas
+Host shire
+Hostname 192.168.0.172
+User ikwa
+ForwardAgent yes
+
+#7) Stage
+Host minasmorgul
+HostName 192.168.0.140
+User ikwa
+ForwardAgent yes
