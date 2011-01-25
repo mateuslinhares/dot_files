@@ -59,37 +59,6 @@ set foldenable
 set foldmethod=manual
 set foldopen-=undo      " don't open folds when you undo stuff
 
-" default colors don't work very well
-"hi Search ctermfg=white ctermbg=blue
-"hi Pmenu  ctermfg=white ctermbg=blue
-"hi PmenuSel  ctermfg=blue ctermbg=white
-"
-"hi SpellBad cterm=underline ctermfg=darkred ctermbg=none
-"hi SpellCap cterm=underline ctermfg=darkgreen ctermbg=none
-"hi SpellLocal cterm=underline ctermfg=darkyellow ctermbg=none
-"hi SpellRare cterm=underline ctermfg=darkmagenta ctermbg=none
-"
-"hi CursorLine cterm=underline ctermfg=red ctermbg=none
-"hi Visual ctermfg=black ctermbg=gray
-"
-"hi Directory cterm=none ctermfg=blue
-"
-"hi StatusLine cterm=none ctermfg=white ctermbg=red
-"hi StatusLineNC cterm=none ctermfg=black ctermbg=white
-"hi VertSplit cterm=none ctermfg=black ctermbg=white
-"
-"hi TabLine cterm=standout ctermfg=darkgray ctermbg=white
-"hi TabLineSel cterm=bold ctermfg=white ctermbg=black
-"hi TabLineFill cterm=standout ctermfg=darkgray ctermbg=black
-"
-"hi MatchParen cterm=standout ctermfg=blue ctermbg=white
-"hi Folded ctermfg=blue ctermbg=black
-"
-"hi ErrorMsg ctermfg=white ctermbg=red
-"hi ModeMsg cterm=none
-"
-"hi MarkedLine ctermbg=yellow ctermfg=black
-
 autocmd FileType ruby set foldexpr=getline(v:lnum)=~'^\\s*#'
 autocmd FileType c,h,cpp,hpp set list! ts=4 sts=4 sw=4 cindent
 autocmd BufRead .irbrc set ft=ruby ts=2 sts=2 sw=2
@@ -152,6 +121,4 @@ autocmd BufWritePre *.yml normal m`:%s/\s\+$//e ``
 " """"""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 set encoding=utf-8
 
-autocmd User Rails if &filetype != 'ruby' | setlocal noexpandtab | endif
-autocmd User Rails if &filetype == 'yaml' | setlocal sw=2 sts=2 expandtab | endif
 au BufNewFile,BufRead *.less set filetype=less
