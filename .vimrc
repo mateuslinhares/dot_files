@@ -154,3 +154,4 @@ set encoding=utf-8
 
 autocmd User Rails if &filetype != 'ruby' | setlocal noexpandtab | endif
 autocmd User Rails if &filetype == 'yaml' | setlocal sw=2 sts=2 expandtab | endif
+au BufNewFile,BufRead *.less set filetype=less
