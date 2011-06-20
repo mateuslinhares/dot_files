@@ -15,7 +15,7 @@ if has('gui_running')
 else
   set background=light
   set t_Co=16
-  set listchars=eol:$,trail:·,tab:>·
+  set listchars=eol:$,trail:?,tab:>?
 endif
 
 set nobackup
