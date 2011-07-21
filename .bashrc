@@ -188,5 +188,4 @@ git-prompt () {
   fi
 }
 PROMPT_COMMAND=git-prompt
-if [[ -s /home/$USER/.rvm/scripts/rvm ]] ; then source /home/$USER/.rvm/scripts/rvm ; fi
-
+[[ -s "/Users/mateuslinhares/.rvm/scripts/rvm" ]] && source "/Users/mateuslinhares/.rvm/scripts/rvm"
