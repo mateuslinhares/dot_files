@@ -1,3 +1,8 @@
+export GREP_OPTIONS="--color=auto"
+export GREP_COLOR="4;33"
+export CLICOLOR="auto"
+
+alias ls="ls -G"
 # Colours
 BLUE="\[\033[0;34m\]"
 NO_COLOR="\[\e[0m\]"
