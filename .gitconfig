@@ -6,6 +6,8 @@
   br=branch
   ci=commit
   st=status
+  lg = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit --date=relative
+  who = shortlog -s --
 [core]
   editor = vim
   excludesfile = /home/mlinhares/.gitignore
