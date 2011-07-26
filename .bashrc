@@ -193,4 +193,4 @@ git-prompt () {
   fi
 }
 PROMPT_COMMAND=git-prompt
-[[ -s "/Users/mateuslinhares/.rvm/scripts/rvm" ]] && source "/Users/mateuslinhares/.rvm/scripts/rvm"
+[[ -s $HOME/.rvm/scripts/rvm ]] && source $HOME/.rvm/scripts/rvm
