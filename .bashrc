@@ -14,6 +14,7 @@ export HISTCONTROL=ignoreboth # ... and ignore same sucessive entries.
 
 # Colours
 BLUE="\[\033[0;34m\]"
+LIGHT_BLUE="\[\033[1;34m\]"
 NO_COLOR="\[\e[0m\]"
 GRAY="\[\033[1;30m\]"
 GREEN="\[\033[0;32m\]"
@@ -21,15 +22,15 @@ LIGHT_GRAY="\[\033[0;37m\]"
 LIGHT_GREEN="\[\033[1;32m\]"
 LIGHT_RED="\[\033[1;31m\]"
 RED="\[\033[0;31m\]"
-WHITE="\[\033[1;37m\]"
+LIGHT_RED="\[\033[1;31m\]"
+WHITE="\[\033[0;37m\]"
 YELLOW="\[\033[0;33m\]"
+NICE_BLUE="\[\033[1;36m\]"
+LIGHT_YELLOW="\[\033[1;33m\]"
 
 # check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-# F*cking Beep Off
-xset b off
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
@@ -76,12 +77,12 @@ git-prompt () {
     fi
 
     if [[ "$STATUS" =~ "$UNTRACKED" ]]; then
-      STATE="${STATE}${YELLOW}*${NO_COLOR}"
+      STATE=" ${STATE}${LIGHT_YELLOW}*${NO_COLOR}"
     fi
 
-    PS1="$WHITE[Mateus $BLUE\W$WHITE]${NO_COLOR}(${PROMPT_COLOR}${BRANCH}${NO_COLOR}${STATE}) " # (${YELLOW}$(rvm_version)${NO_COLOR})\n$ "
+    PS1="$NO_COLOR[$LIGHT_BLUE\w$NO_COLOR]${NO_COLOR}(${PROMPT_COLOR}${BRANCH}${NO_COLOR}${STATE}) " # (${YELLOW}$(rvm_version)${NO_COLOR})\n$ "
   else
-    PS1="$WHITE[Mateus $BLUE\W$WHITE]${NO_COLOR} " # (${YELLOW}$(rvm_version)${NO_COLOR})\n\$ "
+    PS1="$NO_COLOR[$LIGHT_BLUE\w$NO_COLOR]${NO_COLOR} " # (${YELLOW}$(rvm_version)${NO_COLOR})\n\$ "
   fi
 }
 PROMPT_COMMAND=git-prompt
