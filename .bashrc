@@ -1,3 +1,42 @@
+# ~/.bashrc: executed by bash(1) for non-login shells.
+# see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
+# for examples
+export ANDROID_HOME=$HOME/Android/Sdk
+export PATH=$PATH:$ANDROID_HOME/emulator
+export PATH=$PATH:$ANDROID_HOME/tools
+export PATH=$PATH:$ANDROID_HOME/tools/bin
+export PATH=$PATH:$ANDROID_HOME/platform-tools
+export PATH=$PATH:/usr/share/code/bin
+export NODE_PATH=/usr/local/bin/node
+
+# If not running interactively, don't do anything
+case $- in
+    *i*) ;;
+      *) return;;
+esac
+
+# don't put duplicate lines or lines starting with space in the history.
+# See bash(1) for more options
+HISTCONTROL=ignoreboth
+
+# append to the history file, don't overwrite it
+shopt -s histappend
+
+# for setting history length see HISTSIZE and HISTFILESIZE in bash(1)
+HISTSIZE=1000
+HISTFILESIZE=2000
+
+# check the window size after each command and, if necessary,
+# update the values of LINES and COLUMNS.
+shopt -s checkwinsize
+
+# If set, the pattern "**" used in a pathname expansion context will
+# match all files and zero or more directories and subdirectories.
+#shopt -s globstar
+
+# make less more friendly for non-text input files, see lesspipe(1)
+[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
+
 if [ -f ~/.bash_aliases ]; then
   . ~/.bash_aliases
 fi
@@ -6,7 +45,6 @@ if [ -f /etc/bash_completion ]; then
   . /etc/bash_completion
 fi
 
-export GREP_OPTIONS="--color=auto"
 export GREP_COLOR="4;33"
 export CLICOLOR="auto"
 export HISTCONTROL=ignoredups # don't put duplicate lines in the history. See bash(1) for more options
@@ -54,6 +92,11 @@ git-prompt () {
   local DIVERGED="have diverged"
   local CHANGED="# Changed but not updated"
   local TO_BE_COMMITED="# Changes to be committed"
+  local NIX_SHELL_LABEL=""
+
+  if [ "$IN_NIX_SHELL" != "" ]; then
+    NIX_SHELL_LABEL="${GRAY}[nix]${NO_COLOR}";
+  fi
 
   if [ "$BRANCH" != "" ]; then
     if [[ "$STATUS" =~ "$DIVERGED" ]]; then
@@ -80,11 +123,20 @@ git-prompt () {
       STATE=" ${STATE}${LIGHT_YELLOW}*${NO_COLOR}"
     fi
 
-    PS1="$NO_COLOR[$LIGHT_BLUE\w$NO_COLOR]${NO_COLOR}(${PROMPT_COLOR}${BRANCH}${NO_COLOR}${STATE}) " # (${YELLOW}$(rvm_version)${NO_COLOR})\n$ "
+    PS1="$NO_COLOR[$LIGHT_BLUE\w$NO_COLOR]${NO_COLOR}${NIX_SHELL_LABEL}(${PROMPT_COLOR}${BRANCH}${NO_COLOR}${STATE}) " # (${YELLOW}$(rvm_version)${NO_COLOR})\n$ "
   else
-    PS1="$NO_COLOR[$LIGHT_BLUE\w$NO_COLOR]${NO_COLOR} " # (${YELLOW}$(rvm_version)${NO_COLOR})\n\$ "
+    PS1="$NO_COLOR[$LIGHT_BLUE\w$NO_COLOR]${NO_COLOR}${NIX_SHELL_LABEL} " # (${YELLOW}$(rvm_version)${NO_COLOR})\n\$ "
   fi
 }
 PROMPT_COMMAND=git-prompt
 
-[[ -s "/Users/mateuslinhares/.rvm/scripts/rvm" ]] && source "/Users/mateuslinhares/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+. $HOME/.nix-profile/etc/profile.d/nix.sh
+
+export LOCALE_ARCHIVE_2_11="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+export LOCALE_ARCHIVE_2_27="$(nix-build --no-out-link "<nixpkgs>" -A glibcLocales)/lib/locale/locale-archive"
+export LOCALE_ARCHIVE="/usr/bin/locale"
+
+alias ls='ls --color=auto'
+
+. $HOME/.asdf/asdf.sh
+. $HOME/.asdf/completions/asdf.bash
